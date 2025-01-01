@@ -1,19 +1,26 @@
 import React from 'react'
-import Navbar from './pages/Navbar.jsx'
+import PrivateRoute from './Components/PrivateRoute.jsx'
 import Room from './pages/Room.jsx'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Login from './pages/Login.jsx'
+import { AuthProvider } from './utilities/AuthContext.jsx'
+import Register from './pages/Register.jsx'
 
 
 const App = () => {
   return (
     <main>
-      <section className='h-fit w-full fixed top-0'>
-        <Navbar />
-      </section>
-      <section>
-        <div>
-          <Room />
-        </div>
-      </section>
+      <Router>
+      <AuthProvider>
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route element={<PrivateRoute />}>
+        <Route path='/' element={<Room />} />
+        </Route>
+      </Routes>
+      </AuthProvider>
+      </Router>
     </main>
   )
 }
