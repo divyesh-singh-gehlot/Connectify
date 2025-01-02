@@ -6,6 +6,7 @@ import '../index.css'
 import { FaTrash } from "react-icons/fa";
 import Navbar from './Navbar.jsx'
 import { useAuth } from '../utilities/AuthContext.jsx'
+import FormattedDate from '../Components/FormattedDate.jsx'
 
 const Room = () => {
 
@@ -78,6 +79,8 @@ const Room = () => {
         setMessageBody('')
     }
 
+    console.log(messages.isUser)
+
     return (
         <div>
             <Navbar />
@@ -85,31 +88,39 @@ const Room = () => {
                 <div className='bg-[#121212] w-1/2 h-5/6 my-10 rounded-2xl px-10 shadow-lg shadow-white'>
                     <div className='my-3 h-5/6 w-full overflow-scroll no-scrollbar'>
                         <div className='h-full w-full flex flex-col'>
-                            {messages.map(messages => (
-                                <div key={messages.$id} className=' mt-10 text-lg'>
+                            {messages.map((message) => (
+                                <div key={message.$id} className='mt-10 text-lg h-fit w-full'>
                                     <div className='text-[#888888] ml-3 flex justify-between'>
                                         <p>
-                                            {messages?.username ? (
-                                                <span className='text-xl font-semibold text-white mr-5'>{messages.username}</span>
+                                            {message?.username ? (
+                                                <span className='text-xl font-semibold text-white mr-5'>{message.username}</span>
                                             ) : (
                                                 <span className='text-xl font-semibold text-white mr-5'>Anonymous User</span>
                                             )}
-                                            <span>{new Date(messages.$createdAt).toLocaleString()}</span>
+                                            <span><FormattedDate createdAt={message.$createdAt} /></span>
                                         </p>
 
-
-                                        {messages.$permissions.includes(`delete(\"user:${user.$id}\")`) && (
-                                            <button className='mr-4' onClick={() => { deleteMessage(messages.$id) }}>
+                                        {message.$permissions.includes(`delete(\"user:${user.$id}\")`) && (
+                                            <button
+                                                className='mr-4'
+                                                onClick={() => {
+                                                    deleteMessage(message.$id);
+                                                }}
+                                            >
                                                 <FaTrash className='hover:fill-[#2A2A3B]' />
                                             </button>
                                         )}
-
-
-
                                     </div>
-                                    <div className='py-5 px-3 bg-[#2A2A3B] rounded-3xl my-2'><span>{messages.body}</span></div>
+
+                                    <div
+                                        className={`py-5 px-3 rounded-3xl my-2 message-body ${message.user_id === user.$id ? 'bg-[#2A2A3B]' : 'bg-[#1E1E2F]'
+                                            }`}
+                                    >
+                                        <span className='w-full'>{message.body}</span>
+                                    </div>
                                 </div>
                             ))}
+
                         </div>
                     </div>
                     <div><form onSubmit={handleSubmit}>

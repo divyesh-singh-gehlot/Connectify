@@ -2,6 +2,8 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { account } from "../../conf/conf2";
 import { useNavigate } from "react-router-dom";
 import { ID } from "appwrite";
+import { Comment } from "react-loader-spinner";
+
 
 const AuthContext = createContext();
 
@@ -82,7 +84,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={contextData}>
-            {loading ? <p>Loading...</p> : children}
+            {loading ? <div className="h-screen w-screen flex justify-center items-center"><Comment color="white" backgroundColor="#2A2A3B" height='200' width='200'/></div> : children}
         </AuthContext.Provider>
     );
 };

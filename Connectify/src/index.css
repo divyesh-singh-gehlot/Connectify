@@ -21,3 +21,8 @@ h1{
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.message-body {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
