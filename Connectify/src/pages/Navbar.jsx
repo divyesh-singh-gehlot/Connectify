@@ -1,6 +1,6 @@
 import React from 'react'
 import '../index.css'
-import Header from '../Components/HEader'
+import Header from '../Components/Header'
 import { useAuth } from '../utilities/AuthContext'
 import { IoIosLogOut } from "react-icons/io";
 
