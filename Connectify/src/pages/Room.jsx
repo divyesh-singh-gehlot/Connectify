@@ -85,20 +85,20 @@ const Room = () => {
         <div>
             <Navbar />
             <div className='flex justify-center root-container fixed top-10'>
-                <div className='bg-[#121212] w-1/2 h-5/6 my-10 rounded-2xl px-10 shadow-lg shadow-white'>
+                <div className='bg-[#121212] xl:w-1/2 h-5/6 w-5/6 my-10 md:w-5/6 md:mt-20 xl:mt-10 rounded-2xl px-5 xl:px-10 md:px-10 shadow-lg shadow-white'>
                     <div className='my-3 h-5/6 w-full overflow-scroll no-scrollbar'>
                         <div className='h-full w-full flex flex-col'>
                             {messages.map((message) => (
-                                <div key={message.$id} className='mt-10 text-lg h-fit w-full'>
-                                    <div className='text-[#888888] ml-3 flex justify-between'>
-                                        <p>
+                                <div key={message.$id} className='md:mt-10 mt-5 xl:mt-10 text-sm md:text-lg xl:text-lg h-fit w-full'>
+                                    <div className='text-[#888888] xl:ml-3 flex justify-between'>
+                                        <div className='flex flex-col md:flex-row xl:flex-row'>
                                             {message?.username ? (
-                                                <span className='text-xl font-semibold text-white mr-5'>{message.username}</span>
+                                                <span className='text-sm md:text-xl xl:text-xl xl:font-semibold text-white mr-5'>{message.username}</span>
                                             ) : (
-                                                <span className='text-xl font-semibold text-white mr-5'>Anonymous User</span>
+                                                <span className='text-sm md:font-semibold xl:font-semibold text-white mr-5'>Anonymous User</span>
                                             )}
                                             <span><FormattedDate createdAt={message.$createdAt} /></span>
-                                        </p>
+                                            </div>
 
                                         {message.$permissions.includes(`delete(\"user:${user.$id}\")`) && (
                                             <button
@@ -113,7 +113,7 @@ const Room = () => {
                                     </div>
 
                                     <div
-                                        className={`py-5 px-3 rounded-3xl my-2 message-body ${message.user_id === user.$id ? 'bg-[#2A2A3B]' : 'bg-[#1E1E2F]'
+                                        className={`py-5 px-3 w-full rounded-3xl my-2 message-body ${message.user_id === user.$id ? 'bg-[#2A2A3B]' : 'bg-[#1E1E2F]'
                                             }`}
                                     >
                                         <span className='w-full'>{message.body}</span>
@@ -123,15 +123,15 @@ const Room = () => {
 
                         </div>
                     </div>
-                    <div><form onSubmit={handleSubmit}>
-                        <div className='flex w-[44vw] gap-3 h-fit fixed bottom-20'>
-                            <div className='w-5/6 h-fit'>
+                    <div className='w-full h-fit'><form onSubmit={handleSubmit}>
+                        <div className='flex xl:w-[44vw] bottom-15 gap-3 h-fit fixed xl:bottom-20 md:bottom-44 md:w-[75vw]'>
+                            <div className='w-4/6 h-fit md:5/6 lg:w-5/6'>
                                 <input type='text' required maxLength={1000} placeholder='Message'
                                     onChange={(e) => { setMessageBody(e.target.value) }}
-                                    value={messageBody} className='w-full h-14 bg-[#1A1A1A] border-collapse active:boder-[] rounded-3xl px-5' />
+                                    value={messageBody} className='w-full xl:h-14 h-10 md:h-20 bg-[#1A1A1A] border-collapse active:boder-[] rounded-3xl px-5' />
                             </div>
-                            <div className='h-14 w-1/6'>
-                                <input type="submit" value={'Send'} className='bg-[rgba(219,26,90,1)] w-full rounded-3xl h-full text-xl cursor-pointer' />
+                            <div className='xl:h-14 md:h-20 w-2/6 h-10 md:w-1/6 lg:1/6'>
+                                <input type="submit" value={'Send'} className='bg-[rgba(219,26,90,1)] w-full rounded-3xl h-full text-sm md:text-xl xl:text-xl cursor-pointer' />
                             </div>
                         </div>
                     </form></div>

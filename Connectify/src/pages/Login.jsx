@@ -28,14 +28,14 @@ const Login = () => {
 
   return (
     <div className='container h-screen w-full flex justify-center items-center'>
-      <div className='h-5/6 w-1/2 bg-[#121212] flex flex-col justify-start'>
-      <h1 className='text-5xl mt-10 text-center'>Login</h1>
+      <div className='h-4/6 w-full md:h-2/3 md:w-full md:mx-auto lg:w-5/6 xl:h-5/6 xl:w-1/2 bg-[#121212] flex flex-col justify-evenly'>
+      <h1 className='text-3xl mt-5 md:text-5xl md:mt-10 lg:text-5xl lg:mt-5 text-center'>Login</h1>
         <form onSubmit={(e)=>{handleUserLogin(e,credentials)}}>
-            <div className='flex flex-col gap-16 mt-28 w-2/3 mx-auto'>
+            <div className='flex flex-col gap-8 mt-14 md:gap-16 md:mt-14 w-2/3 mx-auto'>
             <div className='flex flex-col gap-3'>
-                <label className='text-3xl '>Email:</label>
+                <label className='text-xl md:text-3xl'>Email:</label>
                 <input
-                className='h-12 bg-transparent' 
+                className='h-8 md:h-12 bg-transparent' 
                 type="email"
                 required
                 name='email'
@@ -45,9 +45,9 @@ const Login = () => {
                 />
             </div>
             <div className='flex flex-col gap-3'>
-                <label className='text-3xl '>Password:</label>
+                <label className='text-xl md:text-3xl '>Password:</label>
                 <input
-                className='h-12 bg-transparent'
+                className='h-8 md:h-12 bg-transparent'
                 type="password"
                 required
                 name='password'
@@ -57,11 +57,11 @@ const Login = () => {
                 />
             </div>
             <div className='h-fit bg-[rgba(219,26,90,1)]'>
-            <button className='text-xl w-full h-12' type='submit'>Login</button>
+            <button className='text-xl w-full h-8 md:h-20 md:text-2xl xl:h-12' type='submit'>Login</button>
             </div>            
             </div>
         </form>
-        <p className='text-center pt-5'>Don't have an account? <Link to='/register' className='underline font-bold'>Register now</Link></p>
+        <div className='text-center pt-5 flex flex-col text-sm md:text-xl md:gap-2 md:justify-center xl:flex-row xl:gap-2 xl:justify-center xl:text-sm'><span>Don't have an account? </span> <span><Link to='/register' className='underline font-bold'>Register now</Link></span></div>
       </div>
     </div>
   )
